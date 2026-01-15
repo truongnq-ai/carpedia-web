@@ -49,12 +49,8 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
                 />
               </div>
             )}
-            <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
-              {brand.name}
-            </h1>
-            <div className="mb-4 text-sm text-gray-500">
-              Thành lập: {brand.foundedYear}
-            </div>
+            
+
             
             <CustomMDX source={brand.content} />
           </div>
@@ -67,27 +63,44 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
                 Thông tin nhanh
               </h2>
               <dl className="pt-4 text-sm">
-                <dt className="text-gray-500 dark:text-gray-400">Quốc gia:</dt>
-                <dd className="font-semibold">
-                  {country ? (
-                    <Link href={`/countries/${country.slug}`} className="flex items-center space-x-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                      {country.flag && (
-                        <div className="relative h-4 w-6 overflow-hidden shadow-sm">
-                           <Image src={country.flag} alt={country.name} fill className="object-cover" />
-                        </div>
-                      )}
-                      <span>{country.name}</span>
-                    </Link>
-                  ) : (
-                    brand.country
-                  )}
-                </dd>
-                <dt className="mt-4 text-gray-500 dark:text-gray-400">Năm thành lập:</dt>
-                <dd className="font-semibold">{brand.foundedYear}</dd>
+                <div className="flex items-center space-x-2">
+                  <dt className="text-gray-500 dark:text-gray-400">Quốc gia:</dt>
+                  <dd className="font-semibold">
+                    {country ? (
+                      <Link
+                        href={`/countries/${country.slug}`}
+                        className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                      >
+                        {country.name}
+                      </Link>
+                    ) : (
+                      brand.country
+                    )}
+                  </dd>
+                </div>
+
+                {country?.flag && (
+                  <div className="mt-4 overflow-hidden rounded-lg border border-gray-100 dark:border-gray-800">
+                    <div className="relative aspect-3/2 w-full shadow-sm">
+                      <Image src={country.flag} alt={country.name} fill className="object-cover" />
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-4 flex items-center space-x-2">
+                  <dt className="text-gray-500 dark:text-gray-400">Năm thành lập:</dt>
+                  <dd className="font-bold">{brand.foundedYear}</dd>
+                </div>
               </dl>
               {brand.logo && (
-                <div className="mt-6 flex justify-center rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
-                   <Image src={brand.logo} alt={brand.name} width={120} height={120} className="object-contain" />
+                <div className="mt-6 flex justify-center p-4">
+                  <Image
+                    src={brand.logo}
+                    alt={brand.name}
+                    width={120}
+                    height={120}
+                    className="object-contain"
+                  />
                 </div>
               )}
             </div>

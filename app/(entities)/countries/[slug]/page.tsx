@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
-import { getAllCountries, getCountryBySlug } from '@/lib/entities'
+import { getAllCountries, getCountryBySlug, getBrandsByCountry } from '@/lib/entities'
+import Link from 'next/link'
 import { CustomMDX } from '@/lib/mdx'
 import { genPageMetadata } from '../../../seo'
 import Image from '@/components/Image'
@@ -25,6 +26,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 export default async function CountryPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params
   const country = getCountryBySlug(params.slug)
+  const brands = country ? getBrandsByCountry(country.slug) : []
 
   if (!country) {
     notFound()
@@ -36,38 +38,52 @@ export default async function CountryPage(props: { params: Promise<{ slug: strin
         <div className="xl:col-span-3 xl:row-span-2 xl:pb-0">
           <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">
             {country.heroImage && (
-              <div className="relative mb-8 h-64 w-full overflow-hidden rounded-lg md:h-96">
-                <Image
-                  src={country.heroImage}
-                  alt={country.name}
-                  className="object-cover"
-                  fill
-                  sizes="100vw"
-                  priority
-                />
+              <div className="relative mb-8 w-full overflow-hidden rounded-lg border border-gray-100 dark:border-gray-800">
+                <div className="relative aspect-3/2 w-full">
+                  <Image
+                    src={country.heroImage}
+                    alt={country.name}
+                    className="object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 50vw"
+                    priority
+                  />
+                </div>
               </div>
             )}
-            <div className="flex items-center space-x-4">
-                {country.flag && (
-                    <div className="relative h-12 w-16 overflow-hidden shadow-sm">
-                        <Image src={country.flag} alt={`${country.name} flag`} fill className="object-cover" />
-                    </div>
-                )}
-                <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
-                {country.name}
-                </h1>
-            </div>
             
             <CustomMDX source={country.content} />
           </div>
         </div>
         
         {/* Sidebar Info */}
-        <div className="pt-8 xl:pt-14">
+        <div className="space-y-8 pt-8 xl:pt-14">
             <div className="rounded-lg bg-blue-50 p-6 dark:bg-blue-900/20">
                 <h3 className="mb-2 text-xl font-bold text-blue-900 dark:text-blue-100">Bạn có biết?</h3>
                 <p className="text-blue-800 dark:text-blue-200">{country.funFact}</p>
             </div>
+
+            {brands.length > 0 && (
+              <div>
+                <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-gray-100">Danh sách thương hiệu</h3>
+                <div className="space-y-3">
+                  {brands.map((brand) => (
+                    <Link
+                      key={brand.slug}
+                      href={`/brands/${brand.slug}`}
+                      className="group flex items-center space-x-3 transition-colors"
+                    >
+                      <div className="relative h-20 w-20 overflow-hidden rounded-md border border-gray-100 p-2 dark:border-gray-800">
+                        <Image src={brand.logo} alt={brand.name} fill className="object-contain" />
+                      </div>
+                      <span className="font-medium text-gray-600 group-hover:text-primary-500 dark:text-gray-400 dark:group-hover:text-primary-400">
+                        {brand.name}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
         </div>
       </div>
     </article>

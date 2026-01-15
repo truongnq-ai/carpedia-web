@@ -99,7 +99,7 @@ async function main() {
             locale: 'vi',
             flag: `/images/countries/${country.slug}/flag.svg`,
             heroImage: `/images/countries/${country.slug}/hero.jpg`, // UPDATED: jpg
-            featured: ['japan', 'germany', 'united-states'].includes(country.slug),
+            featured: ['japan', 'germany', 'united-states', 'vietnam'].includes(country.slug),
             funFact: country.funFact
         };
 
@@ -143,7 +143,7 @@ async function main() {
             heroImage: `/images/brands/${brand.slug}/hero.png`, // UPDATED: png
             cardImage: `/images/brands/${brand.slug}/hero.png`, // UPDATED: Re-use hero (png)
             bodyTypes: brand.bodyTypes,
-            featured: ['toyota', 'bmw', 'tesla', 'ferrari'].includes(brand.slug),
+            featured: ['toyota', 'bmw', 'tesla', 'ferrari', 'vinfast'].includes(brand.slug),
             funFact: `${brand.name} là hãng xe nổi tiếng của ${countryName}!`
         };
 

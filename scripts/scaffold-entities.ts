@@ -19,6 +19,7 @@ const COUNTRIES = [
     { name: 'Thụy Điển', slug: 'sweden', funFact: 'Xe Thụy Điển được mệnh danh là an toàn nhất thế giới!' },
     { name: 'Trung Quốc', slug: 'china', funFact: 'Trung Quốc đang làm rất nhiều xe điện chạy bằng pin.' },
     { name: 'Séc', slug: 'czech-republic', funFact: 'Séc có những hãng xe lâu đời và bền bỉ.' },
+    { name: 'Việt Nam', slug: 'vietnam', funFact: 'Việt Nam có hãng xe VinFast đang vươn mình ra thế giới!' },
 ];
 
 const BODY_TYPES = [
@@ -58,6 +59,8 @@ const BRANDS = [
     // Korea
     { name: 'Hyundai', slug: 'hyundai', country: 'south-korea', bodyTypes: ['sedan', 'suv', 'hatchback', 'minivan'] },
     { name: 'Kia', slug: 'kia', country: 'south-korea', bodyTypes: ['sedan', 'suv', 'hatchback', 'minivan'] },
+    // Vietnam
+    { name: 'VinFast', slug: 'vinfast', country: 'vietnam', bodyTypes: ['sedan', 'suv', 'hatchback'] },
 ];
 
 function createMdxContent(frontmatter: Record<string, any>, title: string, content: string) {

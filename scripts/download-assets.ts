@@ -19,6 +19,7 @@ const COUNTRIES = [
     { slug: 'sweden', code: 'se' },
     { slug: 'china', code: 'cn' },
     { slug: 'czech-republic', code: 'cz' },
+    { slug: 'vietnam', code: 'vn' },
 ];
 
 const BRAND_LOGOS: Record<string, string> = {
@@ -42,6 +43,7 @@ const BRAND_LOGOS: Record<string, string> = {
     'renault': 'renault',
     'hyundai': 'hyundai',
     'kia': 'kia',
+    'vinfast': 'vinfast',
 };
 
 const BODY_TYPES = [

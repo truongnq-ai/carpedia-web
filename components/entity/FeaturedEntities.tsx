@@ -9,6 +9,12 @@ interface FeaturedEntitiesProps {
 }
 
 export default function FeaturedEntities({ brands, countries, bodyTypes }: FeaturedEntitiesProps) {
+  // Create a lookup map for country flags
+  const countryFlags: Record<string, string> = {}
+  countries.forEach((c) => {
+    countryFlags[c.slug] = c.flag
+  })
+
   return (
     <div className="container py-12">
       <div className="mb-8 flex items-center justify-between">
@@ -38,6 +44,8 @@ export default function FeaturedEntities({ brands, countries, bodyTypes }: Featu
                   description={brand.funFact}
                   href={`/brands/${brand.slug}`}
                   image={brand.cardImage || brand.heroImage || '/static/images/twitter-card.png'}
+                  logoUrl={brand.logo}
+                  countryFlagUrl={countryFlags[brand.country]}
                   footer={`Xuất xứ: ${brand.country === 'japan' ? 'Nhật Bản' : brand.country}`}
                 />
               ))}

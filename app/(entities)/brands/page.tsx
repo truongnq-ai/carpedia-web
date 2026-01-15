@@ -1,4 +1,4 @@
-import { getAllBrands, sortByName } from '@/lib/entities'
+import { getAllBrands, getAllCountries, sortByName } from '@/lib/entities'
 import EntityCard from '@/components/entity/EntityCard'
 import EntityGrid from '@/components/entity/EntityGrid'
 import { genPageMetadata } from 'app/seo'
@@ -7,6 +7,13 @@ export const metadata = genPageMetadata({ title: 'Hãng xe' })
 
 export default function BrandsPage() {
   const brands = sortByName(getAllBrands())
+  const countries = getAllCountries()
+
+  // Create a lookup map for country flags
+  const countryFlags: Record<string, string> = {}
+  countries.forEach((c) => {
+    countryFlags[c.slug] = c.flag
+  })
 
   return (
     <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -28,6 +35,8 @@ export default function BrandsPage() {
               href={`/brands/${brand.slug}`}
               // Fallback image if no specific image
               image={brand.cardImage || brand.heroImage || '/static/images/twitter-card.png'}
+              logoUrl={brand.logo}
+              countryFlagUrl={countryFlags[brand.country]}
               footer={`Xuất xứ: ${brand.country === 'japan' ? 'Nhật Bản' : brand.country}`}
             />
           ))}

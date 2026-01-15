@@ -1,7 +1,7 @@
 import 'css/tailwind.css'
 import 'remark-github-blockquote-alert/alert.css'
 
-import { Space_Grotesk } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 import { SearchProvider } from '@/components/SearchProvider'
 import Header from '@/components/Header'
 import SectionContainer from '@/components/SectionContainer'
@@ -10,10 +10,10 @@ import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 
-const space_grotesk = Space_Grotesk({
-  subsets: ['latin'],
+const nunito = Nunito({
+  subsets: ['latin', 'vietnamese'],
   display: 'swap',
-  variable: '--font-space-grotesk',
+  variable: '--font-nunito',
 })
 
 export const metadata: Metadata = {
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      className={`${nunito.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link

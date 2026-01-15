@@ -1,61 +1,90 @@
-# Carpedia - Bách khoa toàn thư Ô tô dành cho trẻ em
+# Carpedia - Bách khoa toàn thư Ô tô cho trẻ em
 
-Carpedia là một nền tảng kiến thức về ô tô được thiết kế đặc biệt cho trẻ em từ 3-7 tuổi. Dự án tập trung vào việc cung cấp thông tin về các thương hiệu xe, quốc gia sản xuất và các loại kiểu dáng xe một cách trực quan và dễ hiểu.
+**Carpedia** là một dự án **Car Wiki giáo dục, phi lợi nhuận**, được thiết kế ưu tiên cho **trẻ em và gia đình**, nhằm giúp trẻ làm quen với thế giới ô tô một cách **trực quan – hệ thống – an toàn**.
 
-![Carpedia Banner](/public/static/images/twitter-card.png)
+Dự án được xây dựng theo hướng **data-driven**, **frontend-only**, và có khả năng mở rộng lâu dài cùng sự phát triển của trẻ.
 
-## 🌟 Tính năng nổi bật
+---
 
-- **Kiến thức dựa trên thực thể (Entity-driven):** Quản lý thông tin theo Hãng xe, Quốc gia và Loại xe.
-- **Nội dung MDX:** Nội dung bài viết phong phú, hỗ trợ định dạng markdown và các component React.
-- **Tìm kiếm nhanh:** Hỗ trợ tìm kiếm nhanh các thực thể (Cmd+K hoặc Ctrl+K).
-- **Giao diện thân thiện:** Thiết kế sạch sẽ, hiện đại, tối ưu cho việc đọc và xem hình ảnh.
-- **Tối ưu hiệu năng:** Xây dựng trên Next.js 15 với tốc độ tải trang cực nhanh.
+## 🎯 Mục tiêu dự án
 
-## 🛠 Công nghệ sử dụng
+- Giúp trẻ em (đặc biệt 3–7 tuổi) nhận biết:
+  - Hãng xe (Brand)
+  - Quốc gia xuất xứ (Country)
+  - Loại xe (Body Type)
+- Tạo một nền tảng học tập:
+  - Ít chữ, nhiều hình ảnh
+  - Dễ hiểu với trẻ nhỏ
+  - Có chiều sâu để phụ huynh cùng học
+- Xây dựng một **Car Wiki phi lợi nhuận**, không quảng cáo, không thương mại
 
-- **Framework:** [Next.js 15 (App Router)](https://nextjs.org/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Content:** [MDX](https://mdxjs.com/) với `@next/mdx` và `next-mdx-remote`
-- **Search:** Client-side JSON index với Headless UI
-- **Deployment:** Tối ưu cho Vercel hoặc các nền tảng hosting tĩnh khác
+---
 
-## 🚀 Bắt đầu nhanh
+## 🧱 Phạm vi MVP
 
-### Cài đặt dependencies
+- **10 hãng xe đầu tiên** (Cập nhật thường xuyên)
+- **Tập trung vào Brand, Country, Body Type**
+- Nội dung viết **cho trẻ em**:
+  - Câu ngắn, đơn giản
+  - Tránh thuật ngữ kỹ thuật nặng
+  - Hình ảnh trực quan
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Styling:** Tailwind CSS 4
+- **Content:** MDX / YAML
+- **Assets:** Optimized images for children
+
+---
+
+## 📂 Thư mục chính
+
+- `/data/entities`: Chứa dữ liệu MDX (Brands, Countries, Body Types).
+- `/app`: Cấu trúc trang sử dụng Next.js App Router.
+- `/components`: Các UI component thân thiện với trẻ em.
+- `/public`: Hình ảnh, logo và tài nguyên tĩnh.
+
+---
+
+## 🚀 Khởi chạy dự án
+
+### Cài đặt
 
 ```bash
 yarn install
 ```
 
-### Chạy môi trường phát triển (Development)
+### Phát triển
 
 ```bash
 yarn dev
 ```
 
-Mở [http://localhost:3000](http://localhost:3000) trên trình duyệt để xem kết quả.
-
-### Xây dựng bản sản xuất (Production Build)
+### Xây dựng bản sản xuất
 
 ```bash
 yarn build
 ```
 
-## 📂 Cấu trúc dự án
+---
 
-- `/data/entities`: Chứa các file nội dung chính dưới dạng `.mdx`.
-  - `/brands`: Các hãng xe (Toyota, Honda...).
-  - `/countries`: Các quốc gia (Nhật Bản, Đức...).
-  - `/body-types`: Các loại xe (SUV, Sedan...).
-- `/lib`: Chứa các tiện ích xử lý dữ liệu và MDX.
-- `/components`: Các thành phần giao diện React.
-- `/public`: Chứa tài nguyên tĩnh như hình ảnh, logo.
+## 🌱 Triết lý phát triển
 
-## 📝 Biên tập nội dung
-
-Dự án sử dụng hệ thống filesystem-based MDX. Để thêm một hãng xe mới, chỉ cần tạo một file `.mdx` mới trong thư mục `/data/entities/brands/` với các trường frontmatter cần thiết.
+- **Phi lợi nhuận & Không quảng cáo**
+- **An toàn cho trẻ em:** Không tracking, không thu thập dữ liệu cá nhân.
+- **Giáo dục là ưu tiên:** Website phát triển lớn lên cùng con.
 
 ---
 
-Dự án được phát triển dựa trên [Tailwind Nextjs Starter Blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) và đã được refactor hoàn toàn để phù hợp với giáo dục trẻ em.
+## 🤝 Đóng góp
+
+Hiện dự án đang ở giai đoạn **MVP sớm**. Chúng tôi sẽ sớm công bố hướng dẫn đóng góp nội dung và hình ảnh cho cộng đồng.
+
+---
+
+## 📜 License
+
+Dự án sử dụng license **MIT**. Bản quyền thuộc về **Carpedia Team**.

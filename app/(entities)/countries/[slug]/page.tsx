@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getAllCountries, getCountryBySlug } from '@/lib/entities'
-import { compileMDXContent } from '@/lib/mdx'
-import { genPageMetadata } from 'app/seo'
+import { CustomMDX } from '@/lib/mdx'
+import { genPageMetadata } from '../../../seo'
 import Image from '@/components/Image'
 
 export async function generateStaticParams() {
@@ -29,8 +29,6 @@ export default async function CountryPage(props: { params: Promise<{ slug: strin
   if (!country) {
     notFound()
   }
-
-  const content = await compileMDXContent(country.content)
 
   return (
     <article>
@@ -60,7 +58,7 @@ export default async function CountryPage(props: { params: Promise<{ slug: strin
                 </h1>
             </div>
             
-            {content}
+            <CustomMDX source={country.content} />
           </div>
         </div>
         

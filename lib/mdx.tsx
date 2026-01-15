@@ -1,34 +1,25 @@
-import { compileMDX } from 'next-mdx-remote/rsc'
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGfm from 'remark-gfm'
-import Image from '@/components/Image'
-import Link from '@/components/Link'
-
-const components = {
-  Image,
-  a: Link,
-}
+import { remarkAlert } from 'remark-github-blockquote-alert'
+import MDXComponents from '@/components/MDXComponents'
 
 /**
- * Compile MDX content to React components
+ * MDX Remote component with project standards
  */
-export async function compileMDXContent(content: string) {
-  try {
-    const { content: compiledContent } = await compileMDX({
-      source: content,
-      components,
-      options: {
-        parseFrontmatter: false, // We already parsed it in entities.ts
+export function CustomMDX(props: MDXRemoteProps) {
+  return (
+    <MDXRemote
+      {...props}
+      components={{ ...MDXComponents, ...(props.components || {}) }}
+      options={{
         mdxOptions: {
-          remarkPlugins: [remarkGfm],
+          remarkPlugins: [remarkGfm, remarkAlert],
           rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
         },
-      },
-    })
-    return compiledContent
-  } catch (error) {
-    console.error('Error compiling MDX:', error)
-    return null
-  }
+        ...(props.options || {}),
+      }}
+    />
+  )
 }

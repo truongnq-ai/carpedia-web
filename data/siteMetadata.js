@@ -8,7 +8,7 @@ const siteMetadata = {
   siteUrl: 'https://carpedia-web.vercel.app',
   siteRepo: 'https://github.com/carpedia/carpedia-web',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
-  socialBanner: `${process.env.BASE_PATH || ''}/static/images/social-banner.png`,
+  socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   email: 'contact@carpedia.com',
   github: 'https://github.com/carpedia',
   facebook: 'https://facebook.com/carpedia',

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getAllBrands, getBrandBySlug } from '@/lib/entities'
-import { compileMDXContent } from '@/lib/mdx'
-import { genPageMetadata } from 'app/seo'
+import { CustomMDX } from '@/lib/mdx'
+import { genPageMetadata } from '../../../seo'
 import Image from '@/components/Image'
 
 export async function generateStaticParams() {
@@ -30,8 +30,6 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
     notFound()
   }
 
-  const content = await compileMDXContent(brand.content)
-
   return (
     <article>
       <div className="space-y-2 xl:grid xl:grid-cols-4 xl:gap-x-8 xl:space-y-0">
@@ -56,31 +54,30 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
               Thành lập: {brand.foundedYear}
             </div>
             
-            {content}
+            <CustomMDX source={brand.content} />
           </div>
         </div>
         
-        {/* Sidebar Info */}
-        <div className="pt-8 xl:pt-14">
-            <div className="rounded-lg border border-gray-200 p-6 dark:border-gray-700">
-                <h3 className="mb-4 text-xl font-bold">Thông tin nhanh</h3>
-                <dl className="space-y-4">
-                    <div>
-                        <dt className="text-sm text-gray-500">Quốc gia</dt>
-                        <dd className="font-semibold">{brand.country === 'japan' ? 'Nhật Bản' : brand.country}</dd>
-                    </div>
-                    <div>
-                        <dt className="text-sm text-gray-500">Năm thành lập</dt>
-                        <dd className="font-semibold">{brand.foundedYear}</dd>
-                    </div>
-                </dl>
-                {brand.logo && (
-                    <div className="mt-6 flex justify-center">
-                        <Image src={brand.logo} alt={`${brand.name} logo`} width={100} height={100} />
-                    </div>
-                )}
+        <aside className="pt-6 xl:pt-11">
+          <div className="sticky top-24 divide-y divide-gray-200 dark:divide-gray-700">
+            <div className="pb-8">
+              <h2 className="text-xs font-bold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                Thông tin nhanh
+              </h2>
+              <dl className="pt-4 text-sm">
+                <dt className="text-gray-500 dark:text-gray-400">Quốc gia:</dt>
+                <dd className="font-semibold">{brand.country === 'japan' ? 'Nhật Bản' : brand.country}</dd>
+                <dt className="mt-4 text-gray-500 dark:text-gray-400">Năm thành lập:</dt>
+                <dd className="font-semibold">{brand.foundedYear}</dd>
+              </dl>
+              {brand.logo && (
+                <div className="mt-6 flex justify-center rounded-lg bg-gray-50 p-4 dark:bg-gray-800">
+                   <Image src={brand.logo} alt={brand.name} width={120} height={120} className="object-contain" />
+                </div>
+              )}
             </div>
-        </div>
+          </div>
+        </aside>
       </div>
     </article>
   )

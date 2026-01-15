@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
-import { getAllBrands, getBrandBySlug } from '@/lib/entities'
+import { getAllBrands, getBrandBySlug, getCountryBySlug } from '@/lib/entities'
+import Link from 'next/link'
 import { CustomMDX } from '@/lib/mdx'
 import { genPageMetadata } from '../../../seo'
 import Image from '@/components/Image'
@@ -25,6 +26,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 export default async function BrandPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params
   const brand = getBrandBySlug(params.slug)
+  const country = brand ? getCountryBySlug(brand.country) : null
 
   if (!brand) {
     notFound()
@@ -66,7 +68,20 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
               </h2>
               <dl className="pt-4 text-sm">
                 <dt className="text-gray-500 dark:text-gray-400">Quốc gia:</dt>
-                <dd className="font-semibold">{brand.country === 'japan' ? 'Nhật Bản' : brand.country}</dd>
+                <dd className="font-semibold">
+                  {country ? (
+                    <Link href={`/countries/${country.slug}`} className="flex items-center space-x-2 text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      {country.flag && (
+                        <div className="relative h-4 w-6 overflow-hidden shadow-sm">
+                           <Image src={country.flag} alt={country.name} fill className="object-cover" />
+                        </div>
+                      )}
+                      <span>{country.name}</span>
+                    </Link>
+                  ) : (
+                    brand.country
+                  )}
+                </dd>
                 <dt className="mt-4 text-gray-500 dark:text-gray-400">Năm thành lập:</dt>
                 <dd className="font-semibold">{brand.foundedYear}</dd>
               </dl>

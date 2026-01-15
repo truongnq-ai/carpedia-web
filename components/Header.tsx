@@ -18,20 +18,21 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="mr-3">
             <Image
-              src="/static/images/logo.png"
+              src="/static/images/logo-light.png"
               alt="Carpedia Logo"
-              width={40}
+              width={160} // Adjusted width for wide logo
               height={40}
-              className="dark:invert" // Optional: invert colors in dark mode if needed
+              className="dark:hidden"
+            />
+            <Image
+              src="/static/images/logo-dark.png"
+              alt="Carpedia Logo"
+              width={160}
+              height={40}
+              className="hidden dark:block"
             />
           </div>
-          {typeof siteMetadata.headerTitle === 'string' ? (
-            <div className="hidden h-6 text-2xl font-semibold sm:block">
-              {siteMetadata.headerTitle}
-            </div>
-          ) : (
-            siteMetadata.headerTitle
-          )}
+          {/* Text hidden because logo includes text now */}
         </div>
       </Link>
       <div className="flex items-center space-x-4 leading-5 sm:-mr-6 sm:space-x-6">

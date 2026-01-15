@@ -9,7 +9,7 @@ export default function SearchButton() {
     <button
       aria-label="Search"
       onClick={openSearch}
-      className="p-2 text-gray-900 hover:text-primary-500 dark:text-gray-100 dark:hover:text-primary-400"
+      className="hover:text-primary-500 dark:hover:text-primary-400 p-2 text-gray-900 dark:text-gray-100"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

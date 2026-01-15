@@ -31,7 +31,9 @@ export default function EntityMenu() {
             href={item.href}
             className="group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
           >
-            <div className={`absolute right-0 top-0 h-24 w-24 translate-x-8 translate-y--8 transform rounded-full ${item.color} opacity-10 group-hover:opacity-20`}></div>
+            <div
+              className={`translate-y--8 absolute top-0 right-0 h-24 w-24 translate-x-8 transform rounded-full ${item.color} opacity-10 group-hover:opacity-20`}
+            ></div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">{item.title}</h3>
             <p className="mt-2 text-gray-500 dark:text-gray-400">{item.description}</p>
           </Link>

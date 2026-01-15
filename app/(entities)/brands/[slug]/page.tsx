@@ -34,9 +34,9 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
 
   return (
     <article>
-      <div className="space-y-2 xl:grid xl:grid-cols-4 xl:gap-x-8 xl:space-y-0">
+      <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:gap-x-8">
         <div className="xl:col-span-3 xl:row-span-2 xl:pb-0">
-          <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">
+          <div className="prose dark:prose-invert max-w-none pt-10 pb-8">
             {brand.heroImage && (
               <div className="relative mb-8 h-64 w-full overflow-hidden rounded-lg md:h-96">
                 <Image
@@ -49,17 +49,15 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
                 />
               </div>
             )}
-            
 
-            
             <CustomMDX source={brand.content} />
           </div>
         </div>
-        
+
         <aside className="pt-6 xl:pt-11">
           <div className="sticky top-24 divide-y divide-gray-200 dark:divide-gray-700">
             <div className="pb-8">
-              <h2 className="text-xs font-bold uppercase tracking-wide text-gray-500 dark:text-gray-400">
+              <h2 className="text-xs font-bold tracking-wide text-gray-500 uppercase dark:text-gray-400">
                 Thông tin nhanh
               </h2>
               <dl className="pt-4 text-sm">

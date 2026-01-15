@@ -8,15 +8,11 @@ interface FeaturedEntitiesProps {
   bodyTypes: BodyType[]
 }
 
-export default function FeaturedEntities({
-  brands,
-  countries,
-  bodyTypes,
-}: FeaturedEntitiesProps) {
+export default function FeaturedEntities({ brands, countries, bodyTypes }: FeaturedEntitiesProps) {
   return (
     <div className="container py-12">
       <div className="mb-8 flex items-center justify-between">
-        <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10">
+        <h2 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-gray-100">
           Khám phá
         </h2>
       </div>
@@ -34,7 +30,7 @@ export default function FeaturedEntities({
                 Xem tất cả &rarr;
               </Link>
             </div>
-            <div className="flex flex-wrap -m-4">
+            <div className="-m-4 flex flex-wrap">
               {brands.slice(0, 3).map((brand) => (
                 <EntityCard
                   key={brand.slug}
@@ -61,7 +57,7 @@ export default function FeaturedEntities({
                 Xem tất cả &rarr;
               </Link>
             </div>
-             <div className="flex flex-wrap -m-4">
+            <div className="-m-4 flex flex-wrap">
               {bodyTypes.slice(0, 3).map((bt) => (
                 <EntityCard
                   key={bt.slug}

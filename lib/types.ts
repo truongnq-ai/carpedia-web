@@ -34,6 +34,7 @@ export interface BodyType {
   heroImage: string
   featured: boolean
   description: string
+  funFact: string
   content: string
 }
 

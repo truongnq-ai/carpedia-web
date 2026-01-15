@@ -17,13 +17,13 @@ const Header = () => {
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="flex items-center justify-between">
           <div className="mr-3">
-             <Image 
-                src="/static/images/logo.png" 
-                alt="Carpedia Logo" 
-                width={40} 
-                height={40} 
-                className="dark:invert" // Optional: invert colors in dark mode if needed
-             />
+            <Image
+              src="/static/images/logo.png"
+              alt="Carpedia Logo"
+              width={40}
+              height={40}
+              className="dark:invert" // Optional: invert colors in dark mode if needed
+            />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
             <div className="hidden h-6 text-2xl font-semibold sm:block">

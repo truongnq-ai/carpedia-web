@@ -114,6 +114,7 @@ export function getAllBodyTypes(): BodyType[] {
       heroImage: data.heroImage || '',
       featured: data.featured || false,
       description: data.description || '',
+      funFact: data.funFact || '',
       content,
     }
   })

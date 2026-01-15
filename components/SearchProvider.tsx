@@ -1,7 +1,16 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { Dialog, DialogPanel, Combobox, ComboboxInput, ComboboxOptions, ComboboxOption, Transition, TransitionChild } from '@headlessui/react'
+import {
+  Dialog,
+  DialogPanel,
+  Combobox,
+  ComboboxInput,
+  ComboboxOptions,
+  ComboboxOption,
+  Transition,
+  TransitionChild,
+} from '@headlessui/react'
 import { useRouter } from 'next/navigation'
 import { SearchResult } from '@/lib/search'
 
@@ -35,7 +44,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-     // Keyboard shortcut
+    // Keyboard shortcut
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
         event.preventDefault()
@@ -51,9 +60,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
       setFilteredResults([])
     } else {
       setFilteredResults(
-        results.filter((item) =>
-          item.name.toLowerCase().includes(query.toLowerCase())
-        ).slice(0, 5) // Limit to 5 results
+        results.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).slice(0, 5) // Limit to 5 results
       )
     }
   }, [query, results])
@@ -83,7 +90,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-             <div className="fixed inset-0 bg-gray-500/25 backdrop-blur-sm transition-opacity" />
+            <div className="fixed inset-0 bg-gray-500/25 backdrop-blur-sm transition-opacity" />
           </TransitionChild>
 
           <div className="fixed inset-0 z-10 w-screen overflow-y-auto p-4 sm:p-6 md:p-20">
@@ -96,11 +103,11 @@ export function SearchProvider({ children }: { children: ReactNode }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white p-2 shadow-2xl ring-1 ring-black ring-opacity-5 transition-all dark:bg-gray-800 dark:ring-white/10">
+              <DialogPanel className="ring-opacity-5 mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white p-2 shadow-2xl ring-1 ring-black transition-all dark:bg-gray-800 dark:ring-white/10">
                 <Combobox onChange={(item: SearchResult) => handleSelect(item)}>
                   <div className="relative">
                     <ComboboxInput
-                      className="h-12 w-full border-0 bg-transparent pl-4 pr-4 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm dark:text-gray-100"
+                      className="h-12 w-full border-0 bg-transparent pr-4 pl-4 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm dark:text-gray-100"
                       placeholder="Tìm kiếm hãng xe, quốc gia..."
                       onChange={(event) => setQuery(event.target.value)}
                       autoComplete="off"
@@ -108,13 +115,16 @@ export function SearchProvider({ children }: { children: ReactNode }) {
                   </div>
 
                   {filteredResults.length > 0 && (
-                    <ComboboxOptions static className="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800 dark:text-gray-200">
+                    <ComboboxOptions
+                      static
+                      className="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800 dark:text-gray-200"
+                    >
                       {filteredResults.map((item) => (
                         <ComboboxOption
                           key={item.url}
                           value={item}
                           className={({ active }) =>
-                            `cursor-default select-none px-4 py-2 ${
+                            `cursor-default px-4 py-2 select-none ${
                               active ? 'bg-indigo-600 text-white' : ''
                             }`
                           }

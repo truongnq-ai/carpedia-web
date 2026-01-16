@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { genPageMetadata } from 'app/seo'
 import { getAllBrands, getAllCountries } from '@/lib/entities'
 import GuessBrandGame from '@/components/game/GuessBrandGame'
+import GuessCountryBrandsGame from '@/components/game/GuessCountryBrandsGame'
+import GuessLetterBrandsGame from '@/components/game/GuessLetterBrandsGame'
 
 interface GamePageProps {
   params: Promise<{
@@ -26,11 +28,22 @@ export default async function GameDetailPage({ params }: GamePageProps) {
     notFound()
   }
 
+  const brands = getAllBrands()
+  const countries = getAllCountries()
+
   // Handle Game 1
   if (slug === 'hang-xe-cua-nuoc-nao') {
-    const brands = getAllBrands()
-    const countries = getAllCountries()
     return <GuessBrandGame brands={brands} countries={countries} />
+  }
+
+  // Handle Game 2
+  if (slug === 'nuoc-nay-co-nhung-hang-xe-nao') {
+    return <GuessCountryBrandsGame brands={brands} countries={countries} />
+  }
+
+  // Handle Game 3
+  if (slug === 'chu-cai-dau-hang-xe') {
+    return <GuessLetterBrandsGame brands={brands} />
   }
 
   return (

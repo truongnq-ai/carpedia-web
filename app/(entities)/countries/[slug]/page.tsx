@@ -34,7 +34,7 @@ export default async function CountryPage(props: { params: Promise<{ slug: strin
 
   return (
     <article>
-      <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:gap-x-8">
+      <div className="space-y-2 xl:grid xl:grid-cols-4 xl:gap-x-8 xl:space-y-0">
         <div className="xl:col-span-3 xl:row-span-2 xl:pb-0">
           <div className="prose dark:prose-invert max-w-none pt-10 pb-8">
             {country.heroImage && (

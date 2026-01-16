@@ -103,7 +103,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="ring-opacity-5 mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white p-2 shadow-2xl ring-1 ring-black transition-all dark:bg-gray-800 dark:ring-white/10">
+              <DialogPanel className="ring-opacity-5 mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white p-2 ring-1 shadow-2xl ring-black transition-all dark:bg-gray-800 dark:ring-white/10">
                 <Combobox onChange={(item: SearchResult) => handleSelect(item)}>
                   <div className="relative">
                     <ComboboxInput

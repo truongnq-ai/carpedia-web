@@ -16,9 +16,10 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
   img-src * blob: data:;
-  media-src *.s3.amazonaws.com;
+  media-src 'self' *.s3.amazonaws.com;
   connect-src *;
   font-src 'self';
+  worker-src 'self' blob:;
 `
 
 const securityHeaders = [
@@ -27,28 +28,28 @@ const securityHeaders = [
     value: ContentSecurityPolicy.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim(),
   },
   {
-      key: 'Referrer-Policy',
-      value: 'strict-origin-when-cross-origin',
+    key: 'Referrer-Policy',
+    value: 'strict-origin-when-cross-origin',
   },
   {
-      key: 'X-Frame-Options',
-      value: 'DENY',
+    key: 'X-Frame-Options',
+    value: 'DENY',
   },
   {
-      key: 'X-Content-Type-Options',
-      value: 'nosniff',
+    key: 'X-Content-Type-Options',
+    value: 'nosniff',
   },
   {
-      key: 'X-DNS-Prefetch-Control',
-      value: 'on',
+    key: 'X-DNS-Prefetch-Control',
+    value: 'on',
   },
   {
-      key: 'Strict-Transport-Security',
-      value: 'max-age=31536000; includeSubDomains',
+    key: 'Strict-Transport-Security',
+    value: 'max-age=31536000; includeSubDomains',
   },
   {
-      key: 'Permissions-Policy',
-      value: 'camera=(), microphone=(), geolocation=()',
+    key: 'Permissions-Policy',
+    value: 'camera=(), microphone=(), geolocation=()',
   },
 ]
 

@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation'
 import { getAllBrands, getBrandBySlug, getCountryBySlug } from '@/lib/entities'
+import { getBrandTimeline } from '@/lib/brand-timelines'
 import Link from 'next/link'
 import { CustomMDX } from '@/lib/mdx'
 import { genPageMetadata } from '../../../seo'
 import Image from '@/components/Image'
+import { BrandTimelineComponent } from '@/components/timeline/BrandTimeline'
 
 export async function generateStaticParams() {
   const brands = getAllBrands()
@@ -27,6 +29,7 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
   const params = await props.params
   const brand = getBrandBySlug(params.slug)
   const country = brand ? getCountryBySlug(brand.country) : null
+  const timeline = brand ? getBrandTimeline(brand.slug) : null
 
   if (!brand) {
     notFound()
@@ -51,6 +54,9 @@ export default async function BrandPage(props: { params: Promise<{ slug: string 
             )}
 
             <CustomMDX source={brand.content} />
+
+            {/* Brand Timeline Section */}
+            {timeline && <BrandTimelineComponent timeline={timeline} />}
           </div>
         </div>
 

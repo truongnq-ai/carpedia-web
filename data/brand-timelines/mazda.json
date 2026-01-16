@@ -1,0 +1,65 @@
+{
+  "brandSlug": "mazda",
+  "events": [
+    {
+      "id": "mazda-2020-modern",
+      "period": "2020–Hiện tại",
+      "title": "Mazda của ngày hôm nay",
+      "description": "Mazda bây giờ làm những chiếc xe rất đẹp và rất tinh tế. Xe Mazda không chỉ để đi, mà còn để cảm nhận niềm vui khi lái.",
+      "heroImages": [
+        "/images/brand-timeline/mazda/2020-modern-1.jpg",
+        "/images/brand-timeline/mazda/2020-modern-2.jpg"
+      ],
+      "eventType": "modern-era",
+      "order": 1
+    },
+    {
+      "id": "mazda-2010-skyactiv",
+      "period": "2010–2019",
+      "title": "Mazda học cách làm xe thông minh hơn",
+      "description": "Mazda tạo ra công nghệ SKYACTIV. Nhờ đó, xe Mazda chạy khỏe hơn, tiết kiệm xăng hơn, nhẹ hơn và thông minh hơn.",
+      "heroImages": [
+        "/images/brand-timeline/mazda/2010-skyactiv-1.jpg",
+        "/images/brand-timeline/mazda/2010-skyactiv-2.jpg"
+      ],
+      "eventType": "technology",
+      "order": 2
+    },
+    {
+      "id": "mazda-1990-rx7",
+      "period": "Những năm 1990",
+      "title": "Mazda nổi tiếng với xe thể thao",
+      "description": "Mazda làm ra những chiếc xe thể thao rất đặc biệt, như Mazda RX-7. Chiếc xe này dùng động cơ quay, khác với hầu hết xe khác. Mazda dám thử.",
+      "heroImages": [
+        "/images/brand-timeline/mazda/1990-rx7-1.jpg",
+        "/images/brand-timeline/mazda/1990-rx7-2.jpg"
+      ],
+      "eventType": "iconic-model",
+      "order": 3
+    },
+    {
+      "id": "mazda-1960-philosophy",
+      "period": "1960–1970",
+      "title": "Mazda chọn con đường riêng",
+      "description": "Trong khi nhiều hãng làm xe giống nhau, Mazda luôn hỏi: 'Chúng ta có thể làm khác đi không?' Mazda tin rằng làm xe phải có cá tính, giống như con người.",
+      "heroImages": [
+        "/images/brand-timeline/mazda/1960-philosophy-1.jpg",
+        "/images/brand-timeline/mazda/1960-philosophy-2.jpg"
+      ],
+      "eventType": "philosophy",
+      "order": 4
+    },
+    {
+      "id": "mazda-1920-founded",
+      "period": "1920",
+      "title": "Mazda được sinh ra",
+      "description": "Mazda ra đời tại Nhật Bản, ở thành phố Hiroshima. Lúc đầu, Mazda chưa làm ô tô, hãng làm máy móc và công cụ. Sau nhiều năm học hỏi, Mazda bắt đầu làm những chiếc xe đầu tiên.",
+      "heroImages": [
+        "/images/brand-timeline/mazda/1920-founded-1.jpg",
+        "/images/brand-timeline/mazda/1920-founded-2.jpg"
+      ],
+      "eventType": "founded",
+      "order": 5
+    }
+  ]
+}

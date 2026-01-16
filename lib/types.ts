@@ -45,3 +45,26 @@ export interface EntityMetadata {
   name: string
   type: EntityType
 }
+
+// Brand Timeline Types
+export type TimelineEventType =
+  | 'founded'
+  | 'technology'
+  | 'iconic-model'
+  | 'philosophy'
+  | 'modern-era'
+
+export interface TimelineEvent {
+  id: string
+  period: string // e.g., "2020–Hiện tại", "1920"
+  title: string // Short, easy to read title
+  description: string // 1-2 sentences for children
+  heroImages: string[] // Array of image paths (multiple images per event)
+  eventType: TimelineEventType
+  order: number // Sort DESC (newest first = 1, oldest = higher number)
+}
+
+export interface BrandTimeline {
+  brandSlug: string
+  events: TimelineEvent[]
+}

@@ -144,13 +144,13 @@ export default function GuessCountryBrandsGame({ brands, countries }: GuessCount
   const isQuestionSolved = remainingToFind === 0
 
   return (
-    <div className="font-nunito mx-auto max-w-4xl px-4 py-8">
+    <div className="font-nunito mx-auto max-w-4xl px-0 py-0">
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={audioRef} />
 
       <div className="overflow-hidden rounded-3xl border-2 border-gray-100 bg-white shadow-2xl dark:border-gray-800 dark:bg-gray-900">
         {/* Country Section */}
-        <div className="flex min-h-[300px] flex-col items-center justify-center bg-gray-50 p-10 dark:bg-gray-800">
+        <div className="flex min-h-[200px] flex-col items-center justify-center bg-gray-50 p-6 md:min-h-[300px] md:p-10 lg:p-12 dark:bg-gray-800">
           <motion.div
             key={currentQuestion.country.slug}
             initial={{ scale: 0.5, opacity: 0 }}
@@ -164,7 +164,7 @@ export default function GuessCountryBrandsGame({ brands, countries }: GuessCount
               className="object-cover"
             />
           </motion.div>
-          <h1 className="mt-8 text-center text-3xl font-bold dark:text-gray-100">
+          <h1 className="mt-8 text-center text-xl font-bold md:text-3xl dark:text-gray-100">
             Nước <span className="text-primary-500">{currentQuestion.country.name}</span> này có
             những hãng xe nào nhỉ?
           </h1>
@@ -189,7 +189,7 @@ export default function GuessCountryBrandsGame({ brands, countries }: GuessCount
         </div>
 
         {/* Options Grid (Brands) */}
-        <div className="grid grid-cols-2 gap-6 p-8 md:gap-8">
+        <div className="grid grid-cols-2 gap-3 p-4 md:gap-6 md:p-6 lg:grid-cols-4 lg:p-8">
           {currentQuestion.options.map((option) => {
             const isCorrect = correctChoices.includes(option.slug)
             const isWrong = wrongChoices.includes(option.slug)
@@ -212,7 +212,7 @@ export default function GuessCountryBrandsGame({ brands, countries }: GuessCount
                 }
                 onClick={() => handleSelectOption(option.slug)}
                 disabled={isQuestionSolved || isCorrect || isWrong}
-                className={`relative flex h-full flex-col items-center rounded-2xl border-4 p-6 transition-all ${
+                className={`relative flex h-full flex-col items-center rounded-2xl border-4 p-4 transition-all ${
                   !isCorrect && !isWrong
                     ? 'hover:border-primary-300 border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-800'
                     : isCorrect
@@ -222,7 +222,7 @@ export default function GuessCountryBrandsGame({ brands, countries }: GuessCount
                         : ''
                 }`}
               >
-                <div className="relative mb-4 flex h-32 w-32 items-center justify-center rounded-xl bg-white p-4 dark:bg-gray-700">
+                <div className="relative mb-4 flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white p-2 shadow-md dark:border-gray-700 dark:bg-gray-700">
                   <Image
                     src={option.logo}
                     alt={option.name}
@@ -231,7 +231,7 @@ export default function GuessCountryBrandsGame({ brands, countries }: GuessCount
                     className="object-contain"
                   />
                 </div>
-                <div className="text-center text-xl font-bold text-gray-700 dark:text-gray-300">
+                <div className="text-center text-sm font-bold text-gray-700 md:text-xl dark:text-gray-300">
                   {option.name}
                 </div>
 
@@ -262,7 +262,7 @@ export default function GuessCountryBrandsGame({ brands, countries }: GuessCount
         </div>
 
         {/* Footer Actions */}
-        <div className="flex items-center justify-between bg-gray-50 p-8 dark:bg-gray-800">
+        <div className="flex items-center justify-between bg-gray-50 p-4 md:p-6 lg:p-8 dark:bg-gray-800">
           <button
             onClick={handleFinish}
             className="flex items-center gap-2 font-bold text-gray-500 transition-colors hover:text-red-500"
@@ -275,9 +275,9 @@ export default function GuessCountryBrandsGame({ brands, countries }: GuessCount
           </div>
           <button
             onClick={handleNextQuestion}
-            className={`rounded-full px-8 py-3 font-bold shadow-md transition-all ${
+            className={`rounded-full px-4 py-2 font-bold shadow-md transition-all md:px-6 lg:px-8 lg:py-3 ${
               isQuestionSolved || solvedSlugs.length > 0
-                ? 'bg-primary-500 hover:bg-primary-600 scale-105 text-white'
+                ? 'scale-105 bg-green-500 text-white hover:bg-green-600'
                 : 'cursor-not-allowed border border-gray-200 bg-gray-300 text-gray-400'
             }`}
           >

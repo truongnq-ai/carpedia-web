@@ -40,13 +40,13 @@ export default function EntityCard({
             </Link>
             {/* Logo Badge - Top Left */}
             {logoUrl && (
-              <div className="absolute top-2 left-2 flex h-10 w-10 items-center justify-center rounded-full bg-white p-1 shadow-md">
+              <div className="absolute top-2 left-2 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white p-1 shadow-md">
                 <Image
                   src={logoUrl}
                   alt={`${title} Logo`}
                   width={32}
                   height={32}
-                  className="max-h-full max-w-full object-contain"
+                  className="max-h-full max-w-full rounded-full object-contain"
                 />
               </div>
             )}

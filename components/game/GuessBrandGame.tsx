@@ -20,10 +20,20 @@ export default function GuessBrandGame({ brands, countries }: GuessBrandGameProp
   const [wrongChoices, setWrongChoices] = useState<string[]>([])
   const [hasGuessedCorrectly, setHasGuessedCorrectly] = useState(false)
   const [isCompleted, setIsCompleted] = useState(false)
+  const [autoNextCountdown, setAutoNextCountdown] = useState<number | null>(null)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
 
   const handleNextQuestion = useCallback(() => {
+    // Stop any playing audio
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+    }
+
+    // Clear countdown
+    setAutoNextCountdown(null)
+
     const nextQuestion = generateQuestion(
       brands,
       countries,
@@ -44,6 +54,24 @@ export default function GuessBrandGame({ brands, countries }: GuessBrandGameProp
     handleNextQuestion()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // Auto-next countdown effect
+  useEffect(() => {
+    if (hasGuessedCorrectly && !isCompleted) {
+      setAutoNextCountdown(3)
+      const timer = setInterval(() => {
+        setAutoNextCountdown((prev) => {
+          if (prev === 1) {
+            handleNextQuestion()
+            return null
+          }
+          return prev !== null ? prev - 1 : null
+        })
+      }, 1000)
+
+      return () => clearInterval(timer)
+    }
+  }, [hasGuessedCorrectly, isCompleted, handleNextQuestion])
 
   const playSound = (correct: boolean) => {
     const soundPath = getRandomSound(correct)
@@ -158,6 +186,26 @@ export default function GuessBrandGame({ brands, countries }: GuessBrandGameProp
             Hãng xe này của nước nào nhỉ?
           </h1>
         </div>
+
+        {/* Auto-next Countdown Message */}
+        <AnimatePresence>
+          {autoNextCountdown !== null && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="mt-2 flex justify-center overflow-hidden text-center"
+            >
+              <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Tự động chuyển sang câu hỏi tiếp theo sau{' '}
+                <span className="text-primary-500 animate-pulse font-bold">
+                  {autoNextCountdown}
+                </span>{' '}
+                giây
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Options Grid */}
         <div className="grid grid-cols-2 gap-3 p-4 md:gap-6 md:p-6 lg:grid-cols-4 lg:p-8">

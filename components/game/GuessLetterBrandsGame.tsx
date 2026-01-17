@@ -211,13 +211,13 @@ export default function GuessLetterBrandsGame({ brands }: GuessLetterBrandsGameP
                         : ''
                 }`}
               >
-                <div className="relative mb-4 flex aspect-[3/2] w-full items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-white p-2 shadow-md dark:border-gray-700 dark:bg-gray-700">
+                <div className="relative mb-4 aspect-[3/2] w-full overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md dark:border-gray-700 dark:bg-gray-700">
                   <Image
                     src={option.logo}
                     alt={option.name}
-                    width={100}
-                    height={100}
-                    className="object-contain"
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-contain p-1"
                   />
                 </div>
                 <div className="text-center text-sm font-bold text-gray-700 md:text-xl dark:text-gray-300">
